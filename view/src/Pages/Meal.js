@@ -26,7 +26,7 @@ function Pantry() {
 
   useEffect(()=>{
    const   fetchrecipe = async () => {
-        const url = `http://localhost:3001/recipes/findById/${IngredientSelected}`;
+        const url = `/recipes/findById/${IngredientSelected}`;
         const response = await axios.get(url);
         const data = await response.data.ingredients;
         console.log("response to ingredient got",data);
@@ -49,7 +49,7 @@ function Pantry() {
 console.log("IngredientSelected=",IngredientSelected);
 //function to handle when user types the list of ingredients with comma and press the search button
   const handleQueryClick = async(query) => {
-   const  url = `http://localhost:3001/recipes/ingredients/${queryList}`;
+   const  url = `/recipes/ingredients/${queryList}`;
    console.log("reached handleclick", url);
    const response =await axios.get(url);
    const data = await response.data;
@@ -74,7 +74,7 @@ console.log("IngredientSelected=",IngredientSelected);
    //function to fetch the recipes based on the list of ingredients selected
   const SearchForRecipes =async()=>{
     console.log(list);
-    const url = `http://localhost:3001/recipes/recipeList`
+    const url = `/recipes/recipeList`
     const response = await axios.get(url,{params:{values:list,selected:selected}});
     const data =await  response.data;
     setRecipes(data);

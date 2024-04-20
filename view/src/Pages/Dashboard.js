@@ -5,11 +5,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { MealPrepModal } from "../Modals/MealPrepModal";
 
-function Dashboard() {
+function Dashboard(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const fridgeID = props.profile.fridgeID._id;
 
   const openModal = () => {
     setIsOpen(true);
@@ -29,7 +30,7 @@ function Dashboard() {
       });
   }, []);
   const handleCategory = (category) => {
-    const url = `http://localhost:3001/recipes/category/${category}`;
+    const url = `/recipes/category/${category}`;
     console.log("response reached from category end");
     axios.get(url).then((response) => {
       console.log("response from server", response.data.length, response.data);
@@ -44,7 +45,7 @@ function Dashboard() {
     console.log("Search term:", searchTerm);
     // Update the recipes state with the search  results using axios
 
-    const url = `http://localhost:3001/recipes/search/${searchTerm}`;
+    const url = `/recipes/search/${searchTerm}`;
     //got to the recipe controller in backend to get the recipes based on user's search
     axios.get(url).then((response) => {
       console.log("response from server", response.data.length, response.data);
@@ -129,7 +130,7 @@ function Dashboard() {
                 </span> */}
               </div>
               <button className="bg-black px-3 py-2 text-white rounded-sm font-semibold" onClick={openModal}>
-              <MealPrepModal isOpen={isOpen} onClose={closeModal} recipeId={recipe._id} recipe_name={recipe.name} />
+              <MealPrepModal isOpen={isOpen} onClose={closeModal} recipeId={recipe._id} recipe_name={recipe.name} fridgeID={fridgeID}/>
        
                 Add to Meal Plan
               </button>

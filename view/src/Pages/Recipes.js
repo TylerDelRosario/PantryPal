@@ -17,7 +17,7 @@ function Recipies() {
     })
     },[])
     const handleCategory = (category) => {
-      const url = `http://localhost:3001/recipes/category/${category}`;
+      const url = `/recipes/category/${category}`;
       console.log("response reached from category end");
       axios
       .get(url)
@@ -34,7 +34,7 @@ function Recipies() {
     console.log("Search term:", searchTerm);
     // Update the recipes state with the search  results using axios
     
-    const url = `http://localhost:3001/recipes/search/${searchTerm}`;
+    const url = `/recipes/search/${searchTerm}`;
     //got to the recipe controller in backend to get the recipes based on user's search
     axios
       .get(url)

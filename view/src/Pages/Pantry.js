@@ -25,7 +25,7 @@ function Pantry(props) {
 }
 //function to handle when user types the list of ingredients with comma and press the search button
   const handleQueryClick = async(query) => {
-   const  url = `http://localhost:3001/recipes/ingredients/${queryList}`;
+   const  url = `/recipes/ingredients/${queryList}`;
    console.log("reached handleclick", url);
    const response =await axios.get(url);
    const data = await response.data;
@@ -49,7 +49,7 @@ function Pantry(props) {
   //SEARCH HOOK
   useEffect(() => {
     const fetchIngredients = async () => {
-      const url = `http://localhost:3001/recipes/getIngredient?ingredient=${query}`
+      const url = `/recipes/getIngredient?ingredient=${query}`
       console.log("rendering useEffect");
       try {
         const response = await fetch(url);
@@ -94,7 +94,7 @@ function Pantry(props) {
     //const id = Object.keys(ingredient);
     //console.log(id);
     const name = ingredient? Object.keys(ingredient) :query;
-    const url = `http://localhost:3001/recipes/getRecipes/${name}`;
+    const url = `/recipes/getRecipes/${name}`;
     fetch(url)
       .then(response =>response.json())
       .then((data) => {
@@ -110,7 +110,7 @@ function Pantry(props) {
    //function to fetch the recipes based on the list of ingredients selected
   const SearchForRecipes =async()=>{
     console.log(list);
-    const url = `http://localhost:3001/recipes/recipeList`
+    const url = `/recipes/recipeList`
     const response = await axios.get(url,{params:{values:list,selected:selected}});
     const data =await  response.data;
     setRecipes(data);

@@ -41,7 +41,7 @@ function App() {
           path="/"
           element={
             <Layout>
-              <Dashboard />
+              <Dashboard profile={profile}/>
             </Layout>
           }
         />
